@@ -13,7 +13,7 @@ mongoose.connect(process.env.MONGO_URL)
       console.log(err.message);
   });
 
-app.get('/healthcheck', (req, res) => {
+app.get('/', (req, res) => {
   res.send('Server is up and running.');
 });
 
