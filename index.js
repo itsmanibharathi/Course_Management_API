@@ -13,7 +13,7 @@ mongoose.connect(process.env.MONGO_URL)
       console.log(err.message);
   });
 
-app.get('/api', (req, res) => {
+app.get('/healthcheck', (req, res) => {
   res.send('Server is up and running.');
 });
 
@@ -24,3 +24,7 @@ app.listen(port, (err) => {
     console.log(`Server Started Successfully at ${port}.`);
   }
 });
+app.use(express.json());
+
+const courseRouter = require('./Router/index');
+app.use('/api',courseRouter);
