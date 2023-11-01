@@ -21,4 +21,33 @@ router.get('/courses', async (req, res) => {
   }
 });
 
+router.post('/courses/:courseName/students', async (req, res) => {
+    try {
+      const courseId = req.params.courseId;
+      const { name, dob, regNo, department } = req.body;
+
+      const course = await Course.findById(courseId);
+  
+      if (!course) {
+        return res.status(404).json({ error: 'Course not found' });
+      }
+  
+      const newStudent = {
+        name,
+        dob,
+        regNo,
+        department,
+      };
+  
+      course.students.push(newStudent);
+      await course.save();
+  
+      res.status(201).json({ message: 'Student added to the course', student: newStudent });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'An error occurred while adding a student to the course' });
+    }
+  });
+  
+
 module.exports = router;

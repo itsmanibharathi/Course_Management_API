@@ -7,7 +7,7 @@ const studentSchema = new mongoose.Schema({
   });
 
 const courseSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  c_name: { type: String, required: true , unique: true},
   category: { type: String, required: true },
   credit: { type: Number, required: true },
   staff: { type: String, required: true },
