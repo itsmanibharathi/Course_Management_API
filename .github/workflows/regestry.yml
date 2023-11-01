@@ -1,0 +1,7 @@
+name: Course_Management_API Registery
+
+on:
+  push:
+    branches:
+      - main
+jobs:
